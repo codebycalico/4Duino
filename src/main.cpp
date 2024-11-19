@@ -26,14 +26,35 @@ uint16_t lastVal = 0;
 // Should work on any device
 // You can use Serial* but you still have to #include "SoftwareSerial.h"
 // OLED(RESET_PIN, serialInterface)
-OLED o_led = OLED(RESET_PIN, SoftwareSerial(RX_PIN, TX_PIN));
+OLED oled = OLED(RESET_PIN, SoftwareSerial(RX_PIN, TX_PIN));
 
 void setup() {
-    o_led.init();
-    o_led.setFontOpacity(true); // Blank the area behind text
-    HEIGHT = o_led.getDeviceHeight();
+    oled.init();
+    oled.setFontOpacity(true); // Blank the area behind text
+    HEIGHT = oled.getDeviceHeight();
+    oled.setBackground(Color(0, 200, 0));
 }
 
 void loop(){
+    //oled.replaceBackground(Color(255, 0, 0));
+    // // Set contrast based on photoresistor value
+    // // Normal room light level produces about 4V
+    // // Alternatively: oled.setContrast(OLEDUtil::scaleAnalog(analogRead(A3),15));
+    // oled.setContrastFromAnalog(A3);
+
+    // // Clear columns for new oscilloscope data
+    // // drawLine(x1, y1, x2, y2, color)
+    // // draw functions can accept colors as 16-bit color values or Color objects
+    // oled.drawLine(x, 0, x, HEIGHT-1, Color(0,30,0));
+    // oled.drawLine(x+1, 0, x+1, HEIGHT-1, Color(20,60,20)); // lighter color for the 'write head'
     
+    // // +5V -> Photoresistor -> A3 -> 10kOhm -> GND
+    // uint16_t newVal = analogRead(A3);
+    // // Draw a line from the previous reading to the current one
+    // oled.drawLine(
+    //     x, HEIGHT - 1 - OLEDUtil::scaleAnalog(lastVal, HEIGHT),
+    //     x+1, HEIGHT - 1 - OLEDUtil::scaleAnalog(newVal, HEIGHT),
+    //     COLOR_LIME
+    // );
+
 }

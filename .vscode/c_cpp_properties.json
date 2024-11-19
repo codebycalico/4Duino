@@ -9,16 +9,15 @@
             "name": "PlatformIO",
             "includePath": [
                 "C:/Users/crandall/Documents/GitHub/4Duino/src",
+                "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "C:/Users/crandall/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/crandall/.platformio/packages/framework-arduino-avr/variants/standard",
                 "C:/Users/crandall/Documents/GitHub/4Duino/.git",
                 "C:/Users/crandall/Documents/GitHub/4Duino/.pio",
                 "C:/Users/crandall/Documents/GitHub/4Duino/.vscode",
-                "C:/Users/crandall/Documents/GitHub/4Duino/examples",
                 "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
@@ -26,16 +25,15 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     "C:/Users/crandall/Documents/GitHub/4Duino/src",
+                    "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "C:/Users/crandall/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/crandall/.platformio/packages/framework-arduino-avr/variants/standard",
                     "C:/Users/crandall/Documents/GitHub/4Duino/.git",
                     "C:/Users/crandall/Documents/GitHub/4Duino/.pio",
                     "C:/Users/crandall/Documents/GitHub/4Duino/.vscode",
-                    "C:/Users/crandall/Documents/GitHub/4Duino/examples",
                     "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "C:/Users/crandall/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
