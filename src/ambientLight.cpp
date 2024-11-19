@@ -65,20 +65,20 @@ uint16_t lastVal = 0;
 
 // OLED(pinReset, serialInterface);
 
-int resetPin = 8;
-int TxPin = 9;
-int RxPin = 10;
+int reset_pin = 8;
+int TX_pin = 9;
+int RX_pin = 10;
 
 // Should work on any device
 // You can use Serial* but you still have to #include "SoftwareSerial.h"
-// OLED(resetPin, serialInterface)
-OLED oled = OLED(resetPin, SoftwareSerial(RxPin,TxPin));
+// OLED(reset_pin, serialInterface)
+OLED o_led = OLED(reset_pin, SoftwareSerial(RX_pin,TX_pin));
 
 void setup()
 {
-    oled.init();
-    oled.setFontOpacity(true); // Blank the area behind text
-    height = oled.getDeviceHeight();
+    o_led.init();
+    o_led.setFontOpacity(true); // Blank the area behind text
+    height = o_led.getDeviceHeight();
 }
 
 
@@ -87,20 +87,20 @@ void loop()
     // Set contrast based on photoresistor value
     // Normal room light level produces about 4V
     // Alternatively: oled.setContrast(OLEDUtil::scaleAnalog(analogRead(A3),15));
-    oled.setContrastFromAnalog(A3);
+    o_led.setContrastFromAnalog(A3);
     
 
 
     // Clear columns for new oscilloscope data
     // drawLine(x1, y1, x2, y2, color)
     // draw functions can accept colors as 16-bit color values or Color objects
-    oled.drawLine(x, 0, x, height-1, Color(0,30,0));
-    oled.drawLine(x+1, 0, x+1, height-1, Color(20,60,20)); // lighter color for the 'write head'
+    o_led.drawLine(x, 0, x, height-1, Color(0,30,0));
+    o_led.drawLine(x+1, 0, x+1, height-1, Color(20,60,20)); // lighter color for the 'write head'
 
     // +5V -> Photoresistor -> A3 -> 10kOhm -> GND
     uint16_t newVal = analogRead(A3);
     // Draw a line from the previous reading to the current one
-    oled.drawLine(
+    o_led.drawLine(
         x, height - 1 - OLEDUtil::scaleAnalog(lastVal, height),
         x+1, height - 1 - OLEDUtil::scaleAnalog(newVal,height),
         COLOR_LIME);
@@ -111,14 +111,14 @@ void loop()
     uint16_t contrast = OLEDUtil::scaleAnalog(newVal, 15);
     // Report the new contrast value
     // drawText(column, row, text)
-    oled.drawText(0, 6, (String)"C:" + contrast + " ");
+    o_led.drawText(0, 6, (String)"C:" + contrast + " ");
 
     // Report the actual voltage level of the analog input.
     // dtostrf() takes a float value and converts it to a string.
     // str must be initialized prior to calling the function to prevent weird memory stuff.
     // dtostrf(float Value, total string width (without null byte), precision, decimal places)
     char str[5] = "0.00";
-    oled.drawText(0, 7, (String)"A3:" + dtostrf(OLEDUtil::analogToVoltage(newVal), 4, 2, str) + "v");
+    o_led.drawText(0, 7, (String)"A3:" + dtostrf(OLEDUtil::analogToVoltage(newVal), 4, 2, str) + "v");
     
 
 
@@ -127,7 +127,7 @@ void loop()
 
     // Jump back to the left side once the scope reaches the right edge
     x+=1;
-    if (x >= oled.getDeviceWidth())
+    if (x >= o_led.getDeviceWidth())
         x = 0;
 
 
