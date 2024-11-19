@@ -56,7 +56,7 @@
 #include "Colors.h"
 
 // Avoid repeated calls to oled.getDeviceHeight()
-uint8_t height;
+uint8_t HEIGHT;
 // Current write position of the scope graph thing
 // Scope loops from left to right
 uint8_t x = 0;
@@ -65,20 +65,20 @@ uint16_t lastVal = 0;
 
 // OLED(pinReset, serialInterface);
 
-int reset_pin = 8;
-int TX_pin = 9;
-int RX_pin = 10;
+#define RESET_PIN 8
+#define TX_PIN 9
+#define RX_PIN 10
 
 // Should work on any device
 // You can use Serial* but you still have to #include "SoftwareSerial.h"
-// OLED(reset_pin, serialInterface)
-OLED o_led = OLED(reset_pin, SoftwareSerial(RX_pin,TX_pin));
+// OLED(RESET_PIN, serialInterface)
+OLED o_led = OLED(RESET_PIN, SoftwareSerial(RX_PIN, TX_PIN));
 
 void setup()
 {
     o_led.init();
     o_led.setFontOpacity(true); // Blank the area behind text
-    height = o_led.getDeviceHeight();
+    HEIGHT = o_led.getDeviceHeight();
 }
 
 
@@ -94,15 +94,15 @@ void loop()
     // Clear columns for new oscilloscope data
     // drawLine(x1, y1, x2, y2, color)
     // draw functions can accept colors as 16-bit color values or Color objects
-    o_led.drawLine(x, 0, x, height-1, Color(0,30,0));
-    o_led.drawLine(x+1, 0, x+1, height-1, Color(20,60,20)); // lighter color for the 'write head'
+    o_led.drawLine(x, 0, x, HEIGHT-1, Color(0,30,0));
+    o_led.drawLine(x+1, 0, x+1, HEIGHT-1, Color(20,60,20)); // lighter color for the 'write head'
 
     // +5V -> Photoresistor -> A3 -> 10kOhm -> GND
     uint16_t newVal = analogRead(A3);
     // Draw a line from the previous reading to the current one
     o_led.drawLine(
-        x, height - 1 - OLEDUtil::scaleAnalog(lastVal, height),
-        x+1, height - 1 - OLEDUtil::scaleAnalog(newVal,height),
+        x, HEIGHT - 1 - OLEDUtil::scaleAnalog(lastVal, HEIGHT),
+        x+1, HEIGHT - 1 - OLEDUtil::scaleAnalog(newVal, HEIGHT),
         COLOR_LIME);
     
 
