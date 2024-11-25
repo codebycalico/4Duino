@@ -11,6 +11,8 @@
 // Check out the file to see what is available.
 #include "Colors.h"
 
+#include <FastLED.h>
+
 // Avoid repeated calls to oled.getDeviceHeight()
 uint8_t HEIGHT;
 // Current write position of the scope graph thing
@@ -29,13 +31,24 @@ uint16_t lastVal = 0;
 OLED oled = OLED(RESET_PIN, SoftwareSerial(RX_PIN, TX_PIN));
 
 void setup() {
-    oled.init();
-    oled.setFontOpacity(true); // Blank the area behind text
-    HEIGHT = oled.getDeviceHeight();
-    oled.setBackground(Color(0, 200, 0));
+    pinMode(13, OUTPUT);
+    while (!Serial){
+        Serial.begin(9600);
+    }
+
+    // oled.init();
+    // oled.setFontOpacity(true); // Blank the area behind text
+    // HEIGHT = oled.getDeviceHeight();
+    // oled.setBackground(Color(0, 200, 0));
+    Serial.println("Setup complete.");
 }
 
 void loop(){
+    EVERY_N_MILLISECONDS ( 500 ){
+        Serial.println("Every 500 ms.");
+        digitalWrite(13, HIGH);
+    }
+    digitalWrite(13, LOW);
     //oled.replaceBackground(Color(255, 0, 0));
     // // Set contrast based on photoresistor value
     // // Normal room light level produces about 4V
