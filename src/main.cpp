@@ -33,8 +33,8 @@
 
 void setup() {
     pinMode(13, OUTPUT);
-   
-        Serial.begin(9600);
+
+    Serial.begin(9600);
 
 
     // oled.init();
@@ -45,12 +45,15 @@ void setup() {
 }
 
 void loop(){
-    digitalWrite(13, HIGH);
-    Serial.println("Digital write high.");
-    delay(1000);
-    digitalWrite(13, LOW);
-    Serial.println("Digital write low.");
-    delay(1000);
+    EVERY_N_MILLISECONDS( 500 ){
+        if(digitalRead(13) == HIGH){
+            digitalWrite(13, LOW);
+            Serial.println("Digital write low.");
+        } else {
+            digitalWrite(13, HIGH);
+            Serial.println("Digital write high.");
+        }
+    }
     //oled.replaceBackground(Color(255, 0, 0));
     // // Set contrast based on photoresistor value
     // // Normal room light level produces about 4V
