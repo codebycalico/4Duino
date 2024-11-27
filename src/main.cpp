@@ -50,7 +50,7 @@ void loop(){
     oled.setContrastFromAnalog(A3);
 
     // Slide between background colors
-    EVERY_N_MILLISECONDS( 3000 ){
+    EVERY_N_MILLISECONDS( 1500 ){
         if(digitalRead(13) == HIGH){
             oled.replaceBackground(Color(255, 0, 0));
             digitalWrite(13, LOW);
