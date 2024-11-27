@@ -13,8 +13,10 @@
 // Check out the file to see what is available.
 #include "Colors.h"
 
-// Avoid repeated calls to oled.getDeviceHeight()
+// Avoid repeated calls to oled.getDeviceHeight() & oled.getDeviceWidth()
  uint8_t HEIGHT;
+ uint8_t WIDTH;
+
 // Current write position of the scope graph thing
 // Scope loops from left to right
  uint8_t x = 0;
@@ -38,6 +40,7 @@ void setup() {
     oled.init();
     oled.setFontOpacity(true); // Blank the area behind text
     HEIGHT = oled.getDeviceHeight();
+    WIDTH = oled.getDeviceWidth();
 }
 
 void loop(){
@@ -46,15 +49,22 @@ void loop(){
 // Alternatively: oled.setContrast(OLEDUtil::scaleAnalog(analogRead(A3),15));
     oled.setContrastFromAnalog(A3);
 
-    EVERY_N_MILLISECONDS( 1000 ){
+    // Slide between background colors
+    EVERY_N_MILLISECONDS( 3000 ){
         if(digitalRead(13) == HIGH){
-             oled.replaceBackground(Color(0, 200, 0));
+            oled.replaceBackground(Color(255, 0, 0));
             digitalWrite(13, LOW);
         } else {
-             oled.replaceBackground(Color(200, 0, 0));
+            oled.replaceBackground(Color(255, 255, 0));
             digitalWrite(13, HIGH);
-            Serial.println("Pin HIGH");
         }
     }
 
+    // Draw little face
+    oled.setFill(true);
+    oled.drawCircle(WIDTH/2, HEIGHT/2, HEIGHT/4, Color(0, 0, 255));
+    oled.drawCircle((WIDTH/2 - 13), (HEIGHT/2 - 10), 10, Color(200, 200, 200));
+    oled.drawCircle((WIDTH/2 + 13), (HEIGHT/2 - 10), 10, Color(200, 200, 200));
+    //oled.drawCircle((WIDTH/2 - 15), (HEIGHT/2 - 13), 5, Color(0, 0, 0));
+    //oled.drawCircle((WIDTH/2 + 15), (HEIGHT/2 - 13), 5, Color(0, 0, 0));
 }

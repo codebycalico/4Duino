@@ -790,7 +790,7 @@ bool OLED::drawCircle(uint16_t x, uint16_t y, uint16_t radius, uint16_t color)
     return getAck();
 }
 
-bool OLED::drawCircle(uint16_t x, uint16_t y, uint16_t radius, Color color)
+bool OLED::drawCircle(uint8_t x, uint8_t y, uint8_t radius, Color color)
 {
     return drawCircle(x, y, radius, color.to16BitRGB());
 }

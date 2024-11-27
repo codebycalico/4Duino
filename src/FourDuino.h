@@ -275,7 +275,7 @@ public:
     bool drawPolygon(uint16_t color, uint8_t numVertices, uint16_t vertices[][2]);
     bool drawPolygon(Color color, uint8_t numVertices, uint16_t vertices[][2]);
     bool drawCircle(uint16_t x, uint16_t y, uint16_t radius, uint16_t color);
-    bool drawCircle(uint16_t x, uint16_t y, uint16_t radius, Color color);
+    bool drawCircle(uint8_t x, uint8_t y, uint8_t radius, Color color);
     bool addUserBitmap(uint8_t char_index,
         uint8_t data1, uint8_t data2, uint8_t data3, uint8_t data4,
         uint8_t data5, uint8_t data6, uint8_t data7, uint8_t data8);
